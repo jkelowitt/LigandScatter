@@ -138,6 +138,7 @@ def main():
     rad = verified_input("What is the radius of the moiety (Å): ", float)
     ligand_count = verified_input("How many ligands would you like to add: ", int)
     file_count = verified_input("How many files do you want to end up with: ", int)
+    output_dir = input("What would you like to name the destination folder: ")
 
     moiety = Sphere(pos=center, radius=rad)
 
