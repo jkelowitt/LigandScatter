@@ -104,6 +104,17 @@ def select_file(prompt):
     return choice
 
 
+def make_molecule_from_file(file):
+    """Given a file, return a Molecule object with the molecule contained in the file"""
+    xyz = parsing_dict[file[file.index(".") + 1:]](file)
+    name = file.split("\\")[-1]
+    name = name[:name.index(".")]
+    atoms = [Atom(a[0], (a[1], a[2], a[3])) for a in xyz]
+    molecule = Molecule(name, atoms)
+    molecule = center_on_atom(molecule, 0)
+    return molecule
+
+
 def main():
     """Main Function"""
 
@@ -114,17 +125,8 @@ def main():
     ligand_file = select_file(ligand_prompt)
 
     # Make the base and ligand compounds
-    base_xyz = parsing_dict[base_file[base_file.index(".") + 1:]](base_file)
-    base_atoms = [Atom(a[0], (a[1], a[2], a[3])) for a in base_xyz]
-    molecule_name = input("\nWhat is the name of the base compound: ")
-    base_compound = Molecule(molecule_name, base_atoms)
-    base = center_on_atom(base_compound, 0)
-
-    ligand_xyz = parsing_dict[ligand_file[ligand_file.index(".") + 1:]](ligand_file)
-    ligand_atoms = [Atom(a[0], (a[1], a[2], a[3])) for a in ligand_xyz]
-    molecule_name = input("\nWhat is the name of the ligand compound: ")
-    ligand_compound = Molecule(molecule_name, ligand_atoms)
-    ligand = center_on_atom(ligand_compound, 0)
+    base = make_molecule_from_file(base_file)
+    ligand = make_molecule_from_file(ligand_file)
 
     if yes_no("Show the base molecule"):
         show_structure(base)
