@@ -146,7 +146,7 @@ def main():
             spun_ligand = randomly_orient(ligand)
             ligand_pos = moiety.sample()
             mo.add_molecule(spun_ligand, ligand_pos)
-        write_job_to_com(mo, title=f"{mo.name}_{ligand_count}{ligand.name}_{i + 1}")
+        write_job_to_com(mo, title=f"{mo.name}_{ligand_count}{ligand.name}_{i + 1}", output=output_dir)
 
 
 if __name__ == "__main__":
