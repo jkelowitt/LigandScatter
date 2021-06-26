@@ -7,7 +7,6 @@
 Generates a set of files where ligands are placed at random positions around a molecule
 within a sphere centered at a user defined moiety.
 """
-
 from copy import deepcopy
 from glob import glob
 
@@ -159,4 +158,4 @@ if __name__ == "__main__":
 
     main()
 
-    input("\nCalculating and saving complete. Press enter to close. ")
+    input("\nFiles saved to folder in executable's location. Press enter to close. ")
