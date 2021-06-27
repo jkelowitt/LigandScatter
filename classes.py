@@ -208,23 +208,23 @@ class Sphere:
         valid = False
         while not valid:
             # Get a random points in 3d space
-            points = random.normal(0, 1, size=(3,))
+            point = random.normal(0, 1, size=(3,))
 
             if source == "surface":
                 # Normalize the point so that it lies on the unit sphere
-                points /= sqrt(np.sum(square(points), axis=1)).reshape(point_count, 1)
+                point /= sqrt(np.sum(square(point), axis=1)).reshape(point_count, 1)
 
             # Scale the sphere to be the same size as the desired sphere
-            points *= self.radius
+            point *= self.radius
 
-            # Shift the points into the correct position
-            points += self.pos
+            # Shift the point into the correct position
+            point += self.pos
 
-            points = list(points)
+            point = list(point)
 
-            valid = self.within(points)
+            valid = self.within(point)
 
-        return points
+        return point
 
 
 def center_on_atom(mo: Molecule, atom_number: int) -> Molecule:
