@@ -173,7 +173,7 @@ if __name__ == "__main__":
     print("Ligand Scatter".center(50, "~"))
     print("Author: Jackson Elowitt")
     print("Repo: https://github.com/jkelowitt/LigandScatter")
-    print("Version: v1")
+    print("Version: v2")
     print("".center(50, "~"))
 
     main()
