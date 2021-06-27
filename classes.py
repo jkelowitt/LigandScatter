@@ -159,7 +159,7 @@ class Sphere:
     def __repr__(self):
         return f"A sphere with radius {self.radius}, centered on {self.pos}"
 
-    def within(self, point: tuple[float, float, float]) -> bool:
+    def within(self, point) -> bool:
         """
         Returns True if the given point is within the sphere
 
@@ -205,21 +205,26 @@ class Sphere:
             returned will only be within the volume of the sphere.
 
         """
+        valid = False
+        while not valid:
+            # Get a random points in 3d space
+            points = random.normal(0, 1, size=(3,))
 
-        # Get a random points in 3d space
-        points = random.normal(0, 1, size=(3,))
+            if source == "surface":
+                # Normalize the point so that it lies on the unit sphere
+                points /= sqrt(np.sum(square(points), axis=1)).reshape(point_count, 1)
 
-        if source == "surface":
-            # Normalize the point so that it lies on the unit sphere
-            points /= sqrt(np.sum(square(points), axis=1)).reshape(point_count, 1)
+            # Scale the sphere to be the same size as the desired sphere
+            points *= self.radius
 
-        # Scale the sphere to be the same size as the desired sphere
-        points *= self.radius
+            # Shift the points into the correct position
+            points += self.pos
 
-        # Shift the points into the correct position
-        points += self.pos
+            points = list(points)
 
-        return list(points)
+            valid = self.within(points)
+
+        return points
 
 
 def center_on_atom(mo: Molecule, atom_number: int) -> Molecule:
