@@ -255,6 +255,10 @@ def check_bonds(m1, m2):
     Only a very complex scenario would really defeat this detection method.
     A complex problem == complex solution, thus, I procrastinate.
     """
+    # Update bond graphs
+    m1.make_bond_graph()
+    m2.make_bond_graph()
+
     # Makes a list of the bond counts for each atom
     m1struct = [len(m1.bonds[b]) for b in m1.bonds]
     m2struct = [len(m2.bonds[b]) for b in m2.bonds]
