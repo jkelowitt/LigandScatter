@@ -142,14 +142,31 @@ def main():
 
     moiety = Sphere(pos=center, radius=rad)
 
+    bond_check_mo = deepcopy(base)
+
+    # Make a molecule which contains the same ligands as our final compound, but
+    # guarantee that none of them overlap.
+    for i in range(ligand_count):
+        far_away = ((i + 1) * 100_000, (i + 1) * 100_000, (i + 1) * 100_000)
+        bond_check_mo.add_molecule(ligand, global_pos=far_away)
+
     # Perform ligand additions and writing
     for i in tqdm(range(file_count), desc="Adding Ligands and Saving File"):
-        mo = deepcopy(base)
-        for _ in range(ligand_count):
-            spun_ligand = randomly_orient(ligand)
-            ligand_pos = moiety.sample()
-            mo.add_molecule(spun_ligand, ligand_pos)
-        write_job_to_com(mo, title=f"{mo.name}_{ligand_count}{ligand.name}_{i + 1}", output=output_dir)
+        error = True
+        while error:
+            # Deep copy so we get no mutability issues
+            mo = deepcopy(base)
+
+            # Add randomly oriented ligands
+            for _ in range(ligand_count):
+                spun_ligand = randomly_orient(ligand)
+                ligand_pos = moiety.sample()
+                mo.add_molecule(spun_ligand, ligand_pos)
+
+            # Check that no ligands overlap
+            error = check_bonds(bond_check_mo, mo) # 0 -> No errors -> break
+
+        write_job_to_com(mo, title=f"{mo.name}_{ligand.name}_{i + 1}", output=output_dir)
 
 
 if __name__ == "__main__":
