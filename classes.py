@@ -9,9 +9,9 @@ from dataclasses import dataclass, field
 from math import sqrt
 
 from numba import njit
-from numpy import random, array
+from numpy import array, random
 
-from data_dicts import cov_rads, bond_threshold, atom_color
+from data_dicts import atom_color, bond_threshold, cov_rads
 
 
 # noinspection PyUnresolvedReferences
@@ -205,6 +205,7 @@ class Sphere:
             returned will only be within the volume of the sphere.
 
         """
+        point = (0, 0, 0)
         valid = False
         while not valid:
             # Get a random points in 3d space
