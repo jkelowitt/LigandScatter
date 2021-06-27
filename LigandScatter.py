@@ -164,7 +164,7 @@ def main():
                 mo.add_molecule(spun_ligand, ligand_pos)
 
             # Check that no ligands overlap
-            error = check_bonds(bond_check_mo, mo) # 0 -> No errors -> break
+            error = check_bonds(bond_check_mo, mo)  # 0 -> No errors -> break
 
         write_job_to_com(mo, title=f"{mo.name}_{ligand.name}_{i + 1}", output=output_dir)
 
