@@ -24,19 +24,21 @@ def center_of_mass(molecule: Molecule, atoms: list[int], weighted=True):
 
     Parameters
     ----------
-    molecule: The molecule for analysis
-    atoms: The list of atom indices to have the center found
-    weighted: If true, the covalent radii of the atoms will be taken into account
-        when determining the
+    molecule: The molecule for analysis.
+    atoms: The indicies of the atoms in the molecule which represent the moitey of which to find the center of mass.
+    weighted: If true, the covalent radii of the atoms will be taken into account when determining the center..
 
     Example
     -------
 
-    w = [Atom("O", (0, 0, 0)),
-        Atom("H", (1, 0, 0)),
-        Atom("H", (0, 1, 0))]
+    >>> w = [Atom("O", (0, 0, 0)),
+             Atom("H", (1, 0, 0)),
+             Atom("H", (0, 1, 0))]
 
-    water = Molecule("Water", w)
+    >>> water = Molecule("Water", w)
+    >>> center_of_mass(water, [0, 1])
+
+    array([0.33636364, 0.        , 0.        ])
     """
     assert len(atoms) > 0, "You must have at least one atom in the collection in order to determine the center of mass"
 
