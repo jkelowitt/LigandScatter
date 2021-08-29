@@ -99,8 +99,8 @@ def make_molecule_from_file(file):
 def main():
     """Main Function"""
 
-    base_prompt = "Enter the directory which contains the base file."
-    ligand_prompt = "Enter the directory which contains the ligand file."
+    base_prompt = "Enter the directory which contains the base molecule file."
+    ligand_prompt = "Enter the directory which contains the ligand molecule file."
 
     base_file = select_file(base_prompt)
     ligand_file = select_file(ligand_prompt)
