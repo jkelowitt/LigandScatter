@@ -17,27 +17,6 @@ from classes import *
 from functions import *
 from parsing import *
 
-w = [Atom("O", (0, 0, 0)),
-     Atom("H", (1, 0, 0)),
-     Atom("H", (0, 1, 0))]
-
-water = Molecule("Water", w)
-
-e = [Atom("C", (-1.50610, 0.76158, -0.10063)),
-     Atom("C", (-0.37068, 1.77049, -0.18112)),
-     Atom("H", (-1.89961, 0.71316, 0.93696)),
-     Atom("H", (-1.13618, -0.24392, -0.39267)),
-     Atom("H", (-2.32724, 1.05681, -0.78791)),
-     Atom("H", (0.00934, 1.79810, -1.22659)),
-     Atom("H", (0.44016, 1.45189, 0.51114)),
-     Atom("O", (-0.84407, 3.03504, 0.18818)),
-     Atom("H", (-0.06799, 3.64958, 0.11823))]
-
-ethanol = Molecule("Ethanol", e)
-
-
-# show_structure(water)
-
 
 def center_of_mass(molecule: Molecule, atoms: list[int], weighted=True):
     """
