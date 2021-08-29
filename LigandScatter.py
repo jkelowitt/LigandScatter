@@ -159,6 +159,7 @@ def main():
         bond_check_mo.add_molecule(ligand, global_pos=far_away)
 
     # Perform ligand additions and writing
+    err_count = 0
     for i in tqdm(range(file_count), desc="Adding Ligands and Saving File"):
         error = True
         while error:
@@ -172,9 +173,17 @@ def main():
                 mo.add_molecule(spun_ligand, ligand_pos)
 
             # Check that no ligands overlap
-            error = check_bonds(bond_check_mo, mo)  # 0 -> No errors -> break
 
-        write_job_to_com(mo, title=f"{mo.name}_{ligand.name}_{i + 1}", output=output_dir)
+            if error := check_bonds(bond_check_mo, mo):
+                err_count += 1
+                if err_count % 1000 == 0:
+                    print(f"\n{err_count} retries performed on a single file. "
+                          f"Try increasing the moiety radius or decreasing the number of ligands to speed things up.")
+            else:
+                err_count = 0
+                break
+
+        write_job_to_com(mo, title=f"{mo.name}_{ligand.name}_{i + 1}", output=output_dir, **settings)
 
 
 if __name__ == "__main__":
