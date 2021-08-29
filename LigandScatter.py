@@ -121,6 +121,31 @@ def main():
     file_count = verified_input("How many files do you want to end up with: ", int)
     output_dir = input("What would you like to name the destination folder: ")
 
+    # Job Settings
+    settings = {
+        "charge": "0",
+        "mul": "1",
+        "job": "Opt Freq",
+        "theory": "B3LYP",
+        "basis": "6-311G(2df,2p)",
+        "cores": "8",
+        "memory": "20gb",
+        "linda": "1",
+    }
+
+    # Display default settings
+    print("\nDefault Job Settings: ")
+    for item in settings:
+        print(f"\t{item} = {settings[item]}")
+
+    non_default = yes_no("\nUse the default settings")
+
+    # Change default options if desired
+    if not non_default:
+        done = False
+        while not done:
+            settings, done = change_dict_values(settings)
+
     moiety = Sphere(pos=center, radius=rad)
 
     bond_check_mo = deepcopy(base)
