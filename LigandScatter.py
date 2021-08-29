@@ -151,9 +151,11 @@ def main():
     bond_check_mo = deepcopy(base)
 
     # Make a molecule which contains the same ligands as our final compound, but
-    # guarantee that none of them overlap.
+    # guarantee that none of them overlap. This is used as a 'good' copy to check
+    # that none of the
+    far_const = 100_000
     for i in range(ligand_count):
-        far_away = ((i + 1) * 100_000, (i + 1) * 100_000, (i + 1) * 100_000)
+        far_away = ((i + 1) * far_const, (i + 1) * far_const, (i + 1) * far_const)
         bond_check_mo.add_molecule(ligand, global_pos=far_away)
 
     # Perform ligand additions and writing
