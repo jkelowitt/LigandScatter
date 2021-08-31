@@ -97,5 +97,7 @@ Once we press enter, the program will:
 
 Once the program finishes, it will tell you so, and you are safe to close the window and view your files.
 
+Click the image below to see a video of the results:
 
-![video_of_output](https://youtu.be/VtDmOqaP7BQ)
+[![Alt text for your video](https://puu.sh/I7W8X/e5fa025a32.png)](https://youtu.be/VtDmOqaP7BQ)
+
