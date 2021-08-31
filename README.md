@@ -96,3 +96,6 @@ Once we press enter, the program will:
 7. Repeat steps 1-7 till the specified file count is reached.
 
 Once the program finishes, it will tell you so, and you are safe to close the window and view your files.
+
+
+![video_of_output](https://youtu.be/VtDmOqaP7BQ)
